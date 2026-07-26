@@ -90,12 +90,12 @@ export default function AtmChassis({ children, isPrinting }) {
           </div>
 
           {/* Receipt slot */}
-          <div className="px-6 sm:px-8 pb-3 sm:pb-4">
+          <div className="px-6 sm:px-8 pt-3 sm:pt-4 pb-3 sm:pb-4">
             <div className={`receipt-slot rounded-md h-3 w-[58%] max-w-[260px] mx-auto ${isPrinting ? 'receipt-slot-printing' : ''}`} />
-            <div id="receipt-print-zone" className="receipt-print-zone" />
             <div className="font-mono text-[8px] sm:text-[10px] text-gray-600 tracking-wider uppercase text-center mt-1">
               Receipt Printer
             </div>
+            <div id="receipt-print-zone" className="receipt-print-zone mt-2" />
           </div>
         </div>
 
