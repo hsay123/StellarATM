@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'VT323', monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  margin: 0;
+  padding: 0;
+  background: #1a1a2e;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== CRT SCREEN EFFECTS ===== */
+
+/* Scanline overlay */
+.crt-scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Moving scanline bar */
+.crt-scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(
+    180deg,
+    rgba(51, 255, 51, 0.03) 0%,
+    transparent 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 11;
+}
+
+/* Phosphor text glow */
+.phosphor-text {
+  color: #33ff33;
+  text-shadow:
+    0 0 5px rgba(51, 255, 51, 0.6),
+    0 0 10px rgba(51, 255, 51, 0.3),
+    0 0 20px rgba(51, 255, 51, 0.15);
+}
+
+.phosphor-dim {
+  color: #1a8c1a;
+  text-shadow:
+    0 0 3px rgba(26, 140, 26, 0.4);
+}
+
+.phosphor-bright {
+  color: #66ff66;
+  text-shadow:
+    0 0 8px rgba(102, 255, 102, 0.8),
+    0 0 16px rgba(51, 255, 51, 0.5),
+    0 0 32px rgba(51, 255, 51, 0.25);
+}
+
+/* CRT screen curvature illusion */
+.crt-curve {
+  border-radius: 18px;
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(51, 255, 51, 0.08),
+    0 0 60px rgba(51, 255, 51, 0.04);
+}
+
+/* ===== ATM CHASSIS ===== */
+
+.atm-bezel {
+  background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  border: 3px solid #444;
+  border-bottom-color: #111;
+  border-right-color: #222;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.atm-bezel-inner {
+  background: linear-gradient(180deg, #1e1e1e 0%, #151515 100%);
+  border: 2px solid #333;
+  border-bottom-color: #111;
+}
+
+/* Physical button base */
+.atm-btn {
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 60%, #222 100%);
+  border: 2px solid #444;
+  border-bottom-color: #111;
+  border-right-color: #222;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.08s ease;
+  cursor: pointer;
+}
+
+.atm-btn:hover {
+  background: linear-gradient(180deg, #444 0%, #333 60%, #2a2a2a 100%);
+}
+
+.atm-btn:active {
+  background: linear-gradient(180deg, #222 0%, #2a2a2a 60%, #333 100%);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(2px);
+}
+
+/* Card slot */
+.card-slot {
+  background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
+  border: 2px solid #333;
+  border-top-color: #0a0a0a;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Receipt slot */
+.receipt-slot {
+  background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+  border: 2px solid #333;
+  border-top-color: #0a0a0a;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== RECEIPT STYLES ===== */
+
+.receipt-paper {
+  background: #f5f5e8;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 100% 4px;
+  color: #1a1a1a;
+  font-family: 'Share Tech Mono', monospace;
+  border-radius: 2px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.receipt-paper::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(180deg, transparent 0%, #f5f5e8 100%);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M0 8 Q5 0 10 8 Q15 0 20 8 Q25 0 30 8 Q35 0 40 8 Q45 0 50 8 Q55 0 60 8 Q65 0 70 8 Q75 0 80 8 Q85 0 90 8 Q95 0 100 8 Q105 0 110 8 Q115 0 120 8 Q125 0 130 8 Q135 0 140 8 Q145 0 150 8 Q155 0 160 8 Q165 0 170 8 Q175 0 180 8 Q185 0 190 8 Q195 0 200 8 V0 H0 Z' fill='white'/%3E%3C/svg%3E");
+  mask-size: 200px 8px;
+}
+
+.receipt-paper::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(0deg, transparent 0%, #f5f5e8 100%);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M0 8 Q5 0 10 8 Q15 0 20 8 Q25 0 30 8 Q35 0 40 8 Q45 0 50 8 Q55 0 60 8 Q65 0 70 8 Q75 0 80 8 Q85 0 90 8 Q95 0 100 8 Q105 0 110 8 Q115 0 120 8 Q125 0 130 8 Q135 0 140 8 Q145 0 150 8 Q155 0 160 8 Q165 0 170 8 Q175 0 180 8 Q185 0 190 8 Q195 0 200 8 V0 H0 Z' fill='white'/%3E%3C/svg%3E");
+  mask-size: 200px 8px;
+}
+
+/* Torn edge bottom */
+.receipt-torn {
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* ===== UTILITY ===== */
+
+/* Blinking cursor */
+.cursor-blink::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+}
+
+/* Input styling for ATM terminal */
+.atm-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #1a8c1a;
+  color: #33ff33;
+  font-family: 'VT323', monospace;
+  font-size: 1.25rem;
+  outline: none;
+  caret-color: #33ff33;
+  text-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+}
+
+.atm-input:focus {
+  border-bottom-color: #33ff33;
+  text-shadow: 0 0 8px rgba(51, 255, 51, 0.7);
+}
+
+.atm-input::placeholder {
+  color: #1a5c1a;
+  text-shadow: none;
+}
+
+/* Noise texture for CRT */
+.crt-noise {
+  position: relative;
+}
+
+.crt-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 5;
+  border-radius: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a5c1a;
+  border-radius: 3px;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(51, 255, 51, 0.3);
+  color: #33ff33;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
