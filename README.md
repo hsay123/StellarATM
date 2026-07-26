@@ -6,7 +6,7 @@ Built for the Stellar Workshop "White Belt" submission.
 
 ![Wallet Connected State](screenshots/wallet-connected.png)
 ![Balance Displayed](screenshots/balance-displayed.png)
-![Successful Transaction](screenshots/successful-transaction.png)
+![Successful Transaction](screenshots/transaction-success.png)
 ![Transaction Result](screenshots/transaction-result.png)
 
 ## Features
@@ -71,7 +71,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### Successful Testnet Transaction
 <!-- Insert screenshot: receipt after a successful withdrawal -->
-![Successful Transaction](screenshots/successful-transaction.png)
+![Successful Transaction](screenshots/transaction-success.png)
 
 ### Transaction Result on Stellar Expert
 <!-- Insert screenshot: Stellar Expert explorer showing the transaction -->
@@ -105,7 +105,7 @@ stellar-tip-splitter/
 └── screenshots/
     ├── wallet-connected.png
     ├── balance-displayed.png
-    ├── successful-transaction.png
+    ├── transaction-success.png
     └── transaction-result.png
 ```
 
