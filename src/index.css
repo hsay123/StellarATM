@@ -140,18 +140,29 @@ body {
     0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Receipt slot — metallic beveled frame around dark recessed opening */
+/* Receipt slot — domed metallic housing with dark slit opening */
 .receipt-slot {
-  background: linear-gradient(180deg, #555 0%, #3a3a3a 25%, #2a2a2a 40%, #1a1a1a 100%);
-  border: 1px solid #666;
-  border-top-color: #777;
-  border-bottom-color: #111;
+  background: linear-gradient(180deg, #6a6a6a 0%, #555 30%, #444 50%, #2a2a2a 100%);
+  border-radius: 10px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-    inset 0 4px 8px rgba(0, 0, 0, 0.9),
-    inset 0 1px 2px rgba(0, 0, 0, 0.6),
-    0 1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.5),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark slit opening near bottom edge of housing */
+.receipt-slot::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  width: 72%;
+  height: 5px;
+  background: #0a0a0a;
+  border-radius: 1px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 /* ===== RECEIPT STYLES ===== */
@@ -159,7 +170,7 @@ body {
 /* Print zone - portal target below receipt slot */
 .receipt-print-zone {
   position: relative;
-  z-index: 20;
+  margin-top: -8px;
   overflow: visible;
 }
 
@@ -193,11 +204,12 @@ body {
 .receipt-paper {
   background: #f5f2e8;
   background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.08) 12px, transparent 24px),
     linear-gradient(180deg, rgba(0,0,0,0.02) 1px, transparent 1px);
-  background-size: 100% 4px;
+  background-size: 100% 100%, 100% 4px;
   color: #1a1a1a;
   font-family: 'Share Tech Mono', monospace;
-  border-radius: 2px;
+  border-radius: 0 0 2px 2px;
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.6),
     0 1px 3px rgba(0, 0, 0, 0.3),
@@ -248,20 +260,18 @@ body {
 @keyframes slotPulse {
   0%, 100% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-      inset 0 4px 8px rgba(0, 0, 0, 0.9),
-      inset 0 1px 2px rgba(0, 0, 0, 0.6),
-      0 1px 0 rgba(255, 255, 255, 0.05);
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.5),
+      0 1px 2px rgba(0, 0, 0, 0.3);
   }
   50% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.15),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.4),
-      inset 0 4px 8px rgba(0, 0, 0, 0.9),
-      inset 0 1px 2px rgba(0, 0, 0, 0.6),
-      0 1px 0 rgba(255, 255, 255, 0.05),
-      0 0 12px rgba(200, 180, 120, 0.35);
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+      0 2px 6px rgba(0, 0, 0, 0.5),
+      0 1px 2px rgba(0, 0, 0, 0.3),
+      0 0 14px rgba(200, 180, 120, 0.4);
   }
 }
 
