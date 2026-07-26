@@ -4,11 +4,6 @@ A retro CRT-styled ATM terminal dApp for the Stellar Testnet. Connect your Freig
 
 Built for the Stellar Workshop "White Belt" submission.
 
-![Wallet Connected State](screenshots/wallet-connected.png)
-![Balance Displayed](screenshots/balance-displayed.png)
-![Successful Transaction](screenshots/transaction-success.png)
-![Transaction Result](screenshots/transaction-result.png)
-
 ## Features
 
 - **Wallet Connection** — "Insert Card" / "Eject Card" flow via Freighter browser extension
