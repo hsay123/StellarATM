@@ -214,7 +214,7 @@ export default function App() {
   }
 
   return (
-    <AtmChassis>
+    <AtmChassis isPrinting={screen === SCREENS.RECEIPT}>
       <div
         className={`transition-opacity duration-300 ${
           transitioning ? 'opacity-0' : 'opacity-100'

@@ -150,8 +150,42 @@ body {
 
 /* ===== RECEIPT STYLES ===== */
 
+/* Print zone - portal target below receipt slot */
+.receipt-print-zone {
+  position: relative;
+  z-index: 20;
+  overflow: visible;
+}
+
+/* Clipping wrapper for print animation */
+.receipt-print-clip {
+  clip-path: inset(0 0 100% 0);
+  animation: receiptPrint 1.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Mechanical print animation with stutter pauses */
+@keyframes receiptPrint {
+  0%    { clip-path: inset(0 0 100% 0); }
+  4%    { clip-path: inset(0 0 92% 0); }
+  8%    { clip-path: inset(0 0 88% 0); }
+  12%   { clip-path: inset(0 0 87% 0); }
+  20%   { clip-path: inset(0 0 72% 0); }
+  24%   { clip-path: inset(0 0 68% 0); }
+  28%   { clip-path: inset(0 0 67% 0); }
+  38%   { clip-path: inset(0 0 48% 0); }
+  42%   { clip-path: inset(0 0 44% 0); }
+  46%   { clip-path: inset(0 0 43% 0); }
+  56%   { clip-path: inset(0 0 25% 0); }
+  60%   { clip-path: inset(0 0 21% 0); }
+  64%   { clip-path: inset(0 0 20% 0); }
+  76%   { clip-path: inset(0 0 6% 0); }
+  80%   { clip-path: inset(0 0 4% 0); }
+  100%  { clip-path: inset(0 0 0 0); }
+}
+
+/* Receipt paper base */
 .receipt-paper {
-  background: #f5f5e8;
+  background: #f5f2e8;
   background-image:
     linear-gradient(180deg, rgba(0,0,0,0.02) 1px, transparent 1px);
   background-size: 100% 4px;
@@ -159,38 +193,59 @@ body {
   font-family: 'Share Tech Mono', monospace;
   border-radius: 2px;
   box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.5),
-    inset 0 0 20px rgba(0, 0, 0, 0.05);
+    0 4px 24px rgba(0, 0, 0, 0.6),
+    0 1px 3px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.04);
 }
 
-.receipt-paper::before {
+/* Torn perforation edge at bottom */
+.receipt-torn-bottom {
+  clip-path: polygon(
+    0% 0%, 100% 0%,
+    100% calc(100% - 8px),
+    97% calc(100% - 3px), 93% calc(100% - 8px),
+    89% calc(100% - 2px), 86% calc(100% - 7px),
+    82% calc(100% - 4px), 79% calc(100% - 8px),
+    75% calc(100% - 3px), 72% calc(100% - 7px),
+    68% calc(100% - 2px), 65% calc(100% - 8px),
+    61% calc(100% - 4px), 58% calc(100% - 7px),
+    54% calc(100% - 3px), 51% calc(100% - 8px),
+    47% calc(100% - 2px), 44% calc(100% - 7px),
+    40% calc(100% - 4px), 37% calc(100% - 8px),
+    33% calc(100% - 3px), 30% calc(100% - 7px),
+    26% calc(100% - 2px), 23% calc(100% - 8px),
+    19% calc(100% - 4px), 16% calc(100% - 7px),
+    12% calc(100% - 3px), 9% calc(100% - 8px),
+    5% calc(100% - 2px), 2% calc(100% - 7px),
+    0% calc(100% - 4px)
+  );
+}
+
+/* Curl shadow near top of receipt */
+.receipt-curl::after {
   content: '';
   position: absolute;
-  top: -8px;
+  top: 0;
   left: 0;
   right: 0;
-  height: 8px;
-  background: linear-gradient(180deg, transparent 0%, #f5f5e8 100%);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M0 8 Q5 0 10 8 Q15 0 20 8 Q25 0 30 8 Q35 0 40 8 Q45 0 50 8 Q55 0 60 8 Q65 0 70 8 Q75 0 80 8 Q85 0 90 8 Q95 0 100 8 Q105 0 110 8 Q115 0 120 8 Q125 0 130 8 Q135 0 140 8 Q145 0 150 8 Q155 0 160 8 Q165 0 170 8 Q175 0 180 8 Q185 0 190 8 Q195 0 200 8 V0 H0 Z' fill='white'/%3E%3C/svg%3E");
-  mask-size: 200px 8px;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.07) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: 2px 2px 0 0;
 }
 
-.receipt-paper::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: linear-gradient(0deg, transparent 0%, #f5f5e8 100%);
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8'%3E%3Cpath d='M0 8 Q5 0 10 8 Q15 0 20 8 Q25 0 30 8 Q35 0 40 8 Q45 0 50 8 Q55 0 60 8 Q65 0 70 8 Q75 0 80 8 Q85 0 90 8 Q95 0 100 8 Q105 0 110 8 Q115 0 120 8 Q125 0 130 8 Q135 0 140 8 Q145 0 150 8 Q155 0 160 8 Q165 0 170 8 Q175 0 180 8 Q185 0 190 8 Q195 0 200 8 V0 H0 Z' fill='white'/%3E%3C/svg%3E");
-  mask-size: 200px 8px;
+/* Receipt slot glow while printing */
+.receipt-slot-printing {
+  animation: slotPulse 1.6s ease-in-out;
 }
 
-/* Torn edge bottom */
-.receipt-torn {
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+@keyframes slotPulse {
+  0%, 100% {
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px rgba(200, 180, 120, 0.3);
+  }
 }
 
 /* ===== UTILITY ===== */

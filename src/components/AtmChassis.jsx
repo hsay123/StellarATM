@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function AtmChassis({ children }) {
+export default function AtmChassis({ children, isPrinting }) {
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
@@ -91,10 +91,11 @@ export default function AtmChassis({ children }) {
 
           {/* Receipt slot */}
           <div className="px-6 sm:px-8 pb-3 sm:pb-4">
-            <div className="receipt-slot rounded-md h-2 w-24 sm:w-28 mx-auto" />
+            <div className={`receipt-slot rounded-md h-2 w-24 sm:w-28 mx-auto ${isPrinting ? 'receipt-slot-printing' : ''}`} />
             <div className="font-mono text-[8px] sm:text-[10px] text-gray-600 tracking-wider uppercase text-center mt-1">
               Receipt Printer
             </div>
+            <div id="receipt-print-zone" className="receipt-print-zone" />
           </div>
         </div>
 
