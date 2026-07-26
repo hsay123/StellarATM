@@ -24,6 +24,13 @@ export default {
           plastic: '#222222',
           plasticLight: '#333333',
         },
+        cream: {
+          light: '#e8e1cc',
+          DEFAULT: '#dfdac4',
+          mid: '#c8c0a5',
+          dark: '#8a8270',
+          trim: '#2f3b2f',
+        },
       },
       fontFamily: {
         terminal: ['"VT323"', 'monospace'],

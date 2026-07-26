@@ -12,12 +12,24 @@ body {
   -moz-osx-font-smoothing: unset;
   margin: 0;
   padding: 0;
-  background: #1a1a2e;
+  background: #0b0c10;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 /* ===== CRT SCREEN EFFECTS ===== */
+
+/* Fine scanline texture overlay (complements .crt-scanlines) */
+.scanline-effect::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+  background-size: 100% 4px;
+  z-index: 30;
+  pointer-events: none;
+}
 
 /* Scanline overlay */
 .crt-scanlines::before {
@@ -82,73 +94,119 @@ body {
   box-shadow:
     inset 0 0 60px rgba(0, 0, 0, 0.6),
     inset 0 0 20px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(51, 255, 51, 0.08),
-    0 0 60px rgba(51, 255, 51, 0.04);
+    0 0 15px rgba(51, 255, 51, 0.06),
+    0 0 40px rgba(51, 255, 51, 0.03),
+    0 0 80px rgba(51, 255, 51, 0.02);
 }
 
-/* ===== ATM CHASSIS ===== */
+/* ===== ATM KEYS ===== */
 
-.atm-bezel {
-  background: linear-gradient(145deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
-  border: 3px solid #444;
-  border-bottom-color: #111;
-  border-right-color: #222;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.atm-bezel-inner {
-  background: linear-gradient(180deg, #1e1e1e 0%, #151515 100%);
-  border: 2px solid #333;
-  border-bottom-color: #111;
-}
-
-/* Physical button base */
+/* Cream key — chunky beveled with 3D travel */
 .atm-btn {
-  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 60%, #222 100%);
-  border: 2px solid #444;
-  border-bottom-color: #111;
-  border-right-color: #222;
+  background: linear-gradient(180deg, #f0ece1 0%, #e3dec3 30%, #d4ccaf 70%, #c8c0a5 100%);
+  border: 2px solid #b5ae95;
+  border-bottom-color: #8a8270;
+  border-right-color: #a09880;
+  border-top-color: #d4ccaf;
+  border-radius: 8px;
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 4px 0 #8a8270,
+    0 6px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.06);
   transition: all 0.08s ease;
   cursor: pointer;
 }
 
 .atm-btn:hover {
-  background: linear-gradient(180deg, #444 0%, #333 60%, #2a2a2a 100%);
+  background: linear-gradient(180deg, #f5f0e6 0%, #e8e1cc 30%, #ddd5bc 70%, #d0c8ad 100%);
 }
 
 .atm-btn:active {
-  background: linear-gradient(180deg, #222 0%, #2a2a2a 60%, #333 100%);
+  background: linear-gradient(180deg, #c8c0a5 0%, #b5ae95 30%, #a8a08a 70%, #9a9280 100%);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.8),
-    inset 0 2px 4px rgba(0, 0, 0, 0.4);
-  transform: translateY(2px);
+    0 1px 0 #8a8270,
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: translateY(3px);
 }
 
-/* Card slot */
+/* Confirm key — vintage green */
+.atm-btn-confirm {
+  background: linear-gradient(180deg, #5ddb94 0%, #2ecc71 30%, #27ae60 70%, #1e8c4c 100%);
+  border-color: #1e8c4c;
+  border-bottom-color: #166b3a;
+  border-top-color: #43d080;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 4px 0 #166b3a,
+    0 6px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.atm-btn-confirm:hover {
+  background: linear-gradient(180deg, #6ee7a0 0%, #34d574 30%, #2ecc71 70%, #27ae60 100%);
+}
+
+.atm-btn-confirm:active {
+  background: linear-gradient(180deg, #1e8c4c 0%, #166b3a 30%, #14532d 70%, #0f4020 100%);
+  box-shadow:
+    0 1px 0 #0f4020,
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(3px);
+}
+
+/* Cancel/exit key — vintage orange */
+.atm-btn-exit {
+  background: linear-gradient(180deg, #f0944d 0%, #e67e22 30%, #d35400 70%, #b84500 100%);
+  border-color: #b84500;
+  border-bottom-color: #8c3400;
+  border-top-color: #f0944d;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    0 4px 0 #8c3400,
+    0 6px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.atm-btn-exit:hover {
+  background: linear-gradient(180deg, #f5a565 0%, #f0944d 30%, #e67e22 70%, #d35400 100%);
+}
+
+.atm-btn-exit:active {
+  background: linear-gradient(180deg, #b84500 0%, #8c3400 30%, #6e2800 70%, #5a1f00 100%);
+  box-shadow:
+    0 1px 0 #5a1f00,
+    0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(3px);
+}
+
+/* Card slot — dark opening with cream frame */
 .card-slot {
-  background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
-  border: 2px solid #333;
-  border-top-color: #0a0a0a;
+  background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+  border: 2px solid #8a8270;
+  border-top-color: #5a5545;
   box-shadow:
-    inset 0 2px 6px rgba(0, 0, 0, 0.8),
-    0 1px 0 rgba(255, 255, 255, 0.05);
+    inset 0 2px 8px rgba(0, 0, 0, 0.9),
+    inset 0 0 4px rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Receipt slot — domed metallic housing with dark slit opening */
+/* Receipt slot — domed cream housing with dark slit */
 .receipt-slot {
-  background: linear-gradient(180deg, #6a6a6a 0%, #555 30%, #444 50%, #2a2a2a 100%);
+  background: linear-gradient(180deg, #e8e1cc 0%, #dfdac4 25%, #c8c0a5 55%, #b5ae95 100%);
   border-radius: 10px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-    0 2px 6px rgba(0, 0, 0, 0.5),
-    0 1px 2px rgba(0, 0, 0, 0.3);
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.1),
+    0 3px 8px rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 /* Dark slit opening near bottom edge of housing */
@@ -260,22 +318,32 @@ body {
 @keyframes slotPulse {
   0%, 100% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-      0 2px 6px rgba(0, 0, 0, 0.5),
-      0 1px 2px rgba(0, 0, 0, 0.3);
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.1),
+      0 3px 8px rgba(0, 0, 0, 0.2),
+      0 1px 3px rgba(0, 0, 0, 0.15);
   }
   50% {
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.2),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.3),
-      0 2px 6px rgba(0, 0, 0, 0.5),
-      0 1px 2px rgba(0, 0, 0, 0.3),
-      0 0 14px rgba(200, 180, 120, 0.4);
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.1),
+      0 3px 8px rgba(0, 0, 0, 0.2),
+      0 1px 3px rgba(0, 0, 0, 0.15),
+      0 0 16px rgba(200, 180, 120, 0.45);
   }
 }
 
 /* ===== UTILITY ===== */
+
+@keyframes scanline {
+  0%   { transform: translateY(-120px); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
 
 /* Blinking cursor */
 .cursor-blink::after {

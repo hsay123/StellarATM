@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
-import AtmChassis from './components/AtmChassis'
+import AtmCabinet from './components/AtmCabinet'
 import BootScreen from './components/BootScreen'
 import IdleScreen from './components/IdleScreen'
 import MenuScreen from './components/MenuScreen'
@@ -214,7 +214,7 @@ export default function App() {
   }
 
   return (
-    <AtmChassis isPrinting={screen === SCREENS.RECEIPT}>
+    <AtmCabinet isPrinting={screen === SCREENS.RECEIPT}>
       <div
         className={`transition-opacity duration-300 ${
           transitioning ? 'opacity-0' : 'opacity-100'
@@ -222,6 +222,6 @@ export default function App() {
       >
         {renderScreen()}
       </div>
-    </AtmChassis>
+    </AtmCabinet>
   )
 }
